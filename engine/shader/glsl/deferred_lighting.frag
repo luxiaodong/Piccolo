@@ -54,6 +54,7 @@ layout(location = 0) in highp vec2 in_texcoord;
 layout(location = 0) out highp vec4 out_color;
 
 #include "mesh_lighting.h"
+#include "mesh_shadow.h"
 
 void main()
 {

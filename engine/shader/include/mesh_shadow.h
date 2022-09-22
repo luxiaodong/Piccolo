@@ -82,7 +82,7 @@ highp float directional_light_shadow_attenuation_pcf_even(highp vec2 uv, highp f
 highp float directional_light_shadow_attenuation_pcf(highp vec2 uv, highp float current_depth, highp float bias, int tileSize)
 {
     highp float shadow;
-    if (tileSize & 1)
+    if (tileSize%2 == 1)
     {
         shadow = directional_light_shadow_attenuation_pcf_odd(uv, current_depth, bias, tileSize);
     }
