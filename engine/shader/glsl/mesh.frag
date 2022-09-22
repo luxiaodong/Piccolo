@@ -87,6 +87,7 @@ highp vec3 calculateNormal()
 }
 
 #include "mesh_lighting.h"
+#include "mesh_shadow.h"
 
 void main()
 {

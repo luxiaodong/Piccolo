@@ -102,19 +102,26 @@ highp vec3 Libl = (kD * diffuse + specular);
 
             highp vec2 uv = ndcxy_to_uv(position_ndc.xy);
 
-            highp float closest_depth = texture(directional_light_shadow, uv).r + 0.000075;
-            highp float current_depth = position_ndc.z;
-
-            shadow = (closest_depth >= current_depth) ? 1.0f : -1.0f;
+            shadow = directional_light_shadow_attenuation_pcf(uv, position_ndc.z, 0.000075, 3);
         }
 
         if (shadow > 0.0f)
         {
             highp vec3 En = scene_directional_light.color * NoL;
             Lo += BRDF(L, V, N, F0, basecolor, metallic, roughness) * En;
+            Lo = vec3(shadow, shadow, shadow);
+            //Lo = vec3(1.0f, 1.0f, 1.0f);
         }
+        else
+        {
+            Lo = vec3(0.0, 0.0, 0.0);
+        }
+    }
+    else
+    {
+        Lo = vec3(0.0, 0.0, 0.0);
     }
 }
 
 // result
-result_color = Lo + La + Libl;
+result_color = Lo;
