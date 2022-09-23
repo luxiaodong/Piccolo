@@ -108,20 +108,10 @@ highp vec3 Libl = (kD * diffuse + specular);
         if (shadow > 0.0f)
         {
             highp vec3 En = scene_directional_light.color * NoL;
-            Lo += BRDF(L, V, N, F0, basecolor, metallic, roughness) * En;
-            Lo = vec3(shadow, shadow, shadow);
-            //Lo = vec3(1.0f, 1.0f, 1.0f);
+            Lo += BRDF(L, V, N, F0, basecolor, metallic, roughness) * En * shadow;
         }
-        else
-        {
-            Lo = vec3(0.0, 0.0, 0.0);
-        }
-    }
-    else
-    {
-        Lo = vec3(0.0, 0.0, 0.0);
     }
 }
 
 // result
-result_color = Lo;
+result_color = Lo + La + Libl;
