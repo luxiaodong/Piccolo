@@ -300,10 +300,10 @@ namespace Piccolo
         rasterization_state_create_info.lineWidth               = 1.0f;
         rasterization_state_create_info.cullMode                = VK_CULL_MODE_BACK_BIT;
         rasterization_state_create_info.frontFace               = VK_FRONT_FACE_COUNTER_CLOCKWISE;
-        rasterization_state_create_info.depthBiasEnable         = VK_FALSE;
-        rasterization_state_create_info.depthBiasConstantFactor = 0.0f;
+        rasterization_state_create_info.depthBiasEnable         = VK_TRUE;
+        rasterization_state_create_info.depthBiasConstantFactor = 1.25f;
         rasterization_state_create_info.depthBiasClamp          = 0.0f;
-        rasterization_state_create_info.depthBiasSlopeFactor    = 0.0f;
+        rasterization_state_create_info.depthBiasSlopeFactor    = 1.75f;
 
         VkPipelineMultisampleStateCreateInfo multisample_state_create_info {};
         multisample_state_create_info.sType                = VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO;
